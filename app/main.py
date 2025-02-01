@@ -6,8 +6,10 @@ from .routers import transcription
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
+app.include_router(transcription.router)
 
 templates = Jinja2Templates(directory="app/templates")
+
 
 @app.get("/")
 async def root(request: Request):

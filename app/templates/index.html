@@ -3,9 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Main Page</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+    </style>
+    <title>Youtube Transcription</title>
   </head>
   <body>
-    <h1 class="text-red-500">Main Page 1</h1>
+    <h1 class="text-center text-4xl font-bold mt-20" style="font-family: 'Open Sans', sans-serif">
+      Transcribe YouTube Videos
+    </h1>
+    <div class="flex items-center justify-center mt-10">
+      <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+        <img src="./../static/images/youtube-svgrepo-com.svg" alt="YouTube Logo" class="h-15 mr-3" />
+      </a>
+      <div class="min-w-[500px]">
+        <input
+          type="text"
+          placeholder="Enter YouTube link"
+          class="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
+        />
+      </div>
+      <button class="ml-3 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 transition duration-300">
+        Transcribe
+      </button>
+    </div>
   </body>
 </html>

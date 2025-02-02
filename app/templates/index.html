@@ -26,14 +26,35 @@
         />
       </div>
       <button
+        id="transcribe-button"
         class="ml-3 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 transition duration-300"
         onclick="transcribeVideo()"
       >
         Transcribe
       </button>
     </div>
+    <div id="transcription-container" class="mt-10 mx-40" hidden>
+      <textarea
+        id="transcription-text"
+        class="w-full h-[800px] p-4 rounded-lg border border-gray-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+        style="font-family: 'Open Sans', sans-serif"
+      ></textarea>
+      <div class="flex justify-center mt-5 mb-10">
+        <button
+          id="generate-audio"
+          class="bg-blue-500 text-white text-2xl px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300 mt-5 w-[800px]"
+          style="font-family: 'Open Sans', sans-serif"
+        >
+          Generate Audio
+        </button>
+      </div>
+    </div>
     <script>
+      let isTranscribing = false;
       async function transcribeVideo() {
+        if (isTranscribing) return;
+        isTranscribing = true;
+        document.getElementById("transcribe-button").disabled = true;
         const url = document.getElementById("youtube-link").value;
         try {
           const response = await fetch("/transcribe", {
@@ -44,9 +65,15 @@
             body: JSON.stringify({ url }),
           });
           const data = await response.json();
-          console.log(data);
+          if (data.text) {
+            document.getElementById("transcription-text").value = data.text;
+            document.getElementById("transcription-container").hidden = false;
+          }
         } catch (error) {
           console.error("Error transcribing video:", error);
+        } finally {
+          isTranscribing = false;
+          document.getElementById("transcribe-button").disabled = false;
         }
       }
     </script>

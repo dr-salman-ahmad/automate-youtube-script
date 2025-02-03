@@ -29,7 +29,7 @@ def get_updated_transcription(transcription: str) -> str:
 
                 ---
                 **Raw Transcription:**
-                {transcription[:100]}
+                {transcription}
                 ---
 
                 Kindly refine the script, making it **concise, compelling, and audience-friendly** while maintaining the essence of the original content.
@@ -37,6 +37,6 @@ def get_updated_transcription(transcription: str) -> str:
             ),
         ]
     )
-    model = ChatOpenAI(model="gpt-4o", temperature=0.7, api_key=os.getenv("OPENAI_API_KEY"))
+    model = ChatOpenAI(model="gpt-4o-mini", temperature=0.7, api_key=os.getenv("OPENAI_API_KEY"))
     response = model.invoke(prompt.format_messages())
     return response.content

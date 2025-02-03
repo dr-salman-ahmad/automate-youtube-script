@@ -15,6 +15,7 @@ youtube-transcript-api = "*"
 langchain = "^0.3.17"
 langchain-openai = "^0.3.3"
 python-dotenv = "^1.0.1"
+elevenlabs = "^1.50.6"
 
 
 [build-system]

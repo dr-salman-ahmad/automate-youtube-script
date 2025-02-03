@@ -84,6 +84,12 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ transcription }),
         });
+        const data = await response.json();
+        if (data.status === "success") {
+          alert("Audio generated successfully! 🎉");
+        } else {
+          alert("Failed to generate audio. Please try again. 🤷‍♂️");
+        }
       }
     </script>
   </body>
